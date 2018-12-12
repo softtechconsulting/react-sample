@@ -1,26 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import Home from "./routes/Home";
+import People from "./routes/People";
+
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div>
+          <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+            <div className="navbar-nav-scroll">
+              <ul className="nav">
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link">Home</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/people" className="nav-link">People</NavLink>
+                </li>
+              </ul>
+            </div>
+          </header>
+          <div className="container-fluid">
+            <Route path="/" exact component={Home} />
+            <Route path="/people" exact component={People} />
+          </div>
+        </div>
+      </Router>
     );
   }
 }
