@@ -4,20 +4,28 @@ import Home from "./routes/Home";
 import People from "./routes/People";
 
 import "./App.css";
+import logo from "./logo.svg";
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+          <header className="App-header">
             <div className="navbar-nav-scroll">
               <ul className="nav">
                 <li className="nav-item">
-                  <NavLink to="/" className="nav-link">Home</NavLink>
+                  <img src={logo} className="App-logo" alt="logo" />
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/people" className="nav-link">People</NavLink>
+                  <NavLink to="/" className="App-link nav-link">
+                    Home
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/people" className="App-link nav-link">
+                    People
+                  </NavLink>
                 </li>
               </ul>
             </div>
