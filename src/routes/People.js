@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import PersonService from "../services/PersonService";
 
@@ -29,10 +29,29 @@ const columns = [
   }
 ];
 
-const data = PersonService.findAll();
+export default class PeopleViewer extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-export default class PeopleViewer extends React.Component {
+  componentDidMount() {
+    this.fetch();
+  }
+
+  async fetch() {
+    const data = await PersonService.findAll();
+    console.warn('got data length '+data.length)
+    this.setState({ data });
+  }
+
   render() {
-    return <BootstrapTable keyField="id" data={data} columns={columns} bootstrap4={true}/>;
+    const { data } = this.state;
+
+    if (!data) return null;
+
+    return (
+      <BootstrapTable keyField="id" data={data} columns={columns} bootstrap4={true} />
+    );
   }
 }
