@@ -1,5 +1,29 @@
 import _ from 'lodash';
 
+const personIndex = {};
+
+function findAll() {
+  return _.sortBy(_.values(personIndex), "name");
+}
+
+function update(person) {
+  const {id, ...properties} = person;
+  const currentPerson = personIndex[id];
+  if (!currentPerson) {
+    return Promise.reject(new Error("Invalid person id: " + id));
+  }
+  const updatedPerson = _.merge(currentPerson, properties);
+  personIndex[id] = updatedPerson;
+  return Promise.resolve(updatedPerson);
+}
+
+const PersonService = {
+  findAll,
+  update
+};
+
+export default PersonService;
+
 const data = [
   {
     "id": "3bd20db4-080d-48c2-972d-cb47631570f6",
@@ -87,28 +111,4 @@ const data = [
   }
 ];
 
-const personIndex = {};
-
 data.forEach(person => {personIndex[person.id] = person});
-
-function update(person) {
-  const {id, ...properties} = person;
-  const currentPerson = personIndex[id];
-  if (!currentPerson) {
-    return Promise.reject(new Error("Invalid person id: " + id));
-  }
-  const updatedPerson = _.merge(currentPerson, properties);
-  personIndex[id] = updatedPerson;
-  return Promise.resolve(updatedPerson);
-}
-
-function findAll() {
-  return _.sortBy(_.values(personIndex), "name");
-}
-
-const PersonService = {
-  findAll,
-  update
-};
-
-export default PersonService;
