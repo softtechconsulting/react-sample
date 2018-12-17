@@ -15,15 +15,17 @@ class App extends Component {
             <div className="navbar-nav-scroll">
               <ul className="nav">
                 <li className="nav-item">
-                  <img src={logo} className="App-logo" alt="logo" />
+                  <a href="https://facebook.github.io/create-react-app/docs/getting-started">
+                    <img src={logo} className="App-logo" alt="logo" />
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/" className="App-link nav-link">
+                  <NavLink to="/" className="nav-link">
                     Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/people" className="App-link nav-link">
+                  <NavLink to="/people" className="nav-link">
                     People
                   </NavLink>
                 </li>
